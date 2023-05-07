@@ -4,7 +4,26 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    Checkin Controller
+<div>
+    <h1>Checkin Controller</h1>
+    {{ form_start(form) }}
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_help(form.name) }}
+
+        {{ form_label(form.surname) }}
+        {{ form_errors(form.surname) }}
+        {{ form_widget(form.surname) }}
+        {{ form_help(form.surname) }}
+
+        {{ form_label(form.type) }}
+        {{ form_errors(form.type) }}
+        {{ form_widget(form.type) }}
+        {{ form_help(form.type) }}
+        
+        <button type="submit">add</button>
+    {{ form_end(form) }}
+
 </div>
 {% endblock %}

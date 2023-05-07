@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CheckinRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Type;
 
 #[ORM\Entity(repositoryClass: CheckinRepository::class)]
 class Checkin
@@ -33,6 +34,10 @@ class Checkin
 
     #[ORM\Column]
     private ?int $roomId = null;
+
+    #[Assert\Type(type: Type::class)]
+    #[Assert\Valid]
+    protected $type;
 
     public function getId(): ?int
     {
@@ -121,5 +126,15 @@ class Checkin
         $this->roomId = $roomId;
 
         return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type)
+    {
+        $this->type = $type;
     }
 }
