@@ -31,6 +31,9 @@ class Checkin
     #[ORM\Column]
     private ?int $guestId = null;
 
+    #[ORM\Column]
+    private ?int $roomId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Checkin
     public function setGuestId(int $guestId): self
     {
         $this->guestId = $guestId;
+
+        return $this;
+    }
+
+    public function getRoomId(): ?int
+    {
+        return $this->roomId;
+    }
+
+    public function setRoomId(int $roomId): self
+    {
+        $this->roomId = $roomId;
 
         return $this;
     }
