@@ -19,6 +19,7 @@ class CheckinController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             return new Response('ok');
+            // todo: insert code to save data to database
         }
         return $this->render('checkin.html.twig', [
             'form' => $form

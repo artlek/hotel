@@ -8,21 +8,28 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Service\GetRoomTypes;
 
 class AddCheckinForm extends AbstractType
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em, GetRoomTypes $arrayTypes)
+    {
+        $this->em = $em;
+        $this->arrayTypes = $arrayTypes;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $array = [
-            'pierwszy typ' => 'aa',
-            'drugi typ' => 'bbb',
-            'typ trzeci' => 'cc cc',
-        ];
         $builder
             ->add('name', TextType::class, ['mapped' => false])
             ->add('surname', TextType::class, ['mapped' => false])
+            ->add('telephone', NumberType::class, ['mapped' => false])
             ->add('type', ChoiceType::class, [
-                'choices' => $array,
+                'choices' => $this->arrayTypes->get(),
                 'mapped' => false
             ])
         ;
