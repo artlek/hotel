@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Room list - Hotel App{% endblock %}
+
+{% block body %}
+
+<table>
+    <thead>
+        <th>no</th>
+        <th>type</th>
+        <th>availability</th>
+        <th>guest name</th>
+        <th>guest surname</th>
+        <th>guest telephone</th>
+    </thead>
+    {% for room in rooms %}
+    <tbody>
+        <td><a href="/room/{{ room.id }}">{{ room.no }}</a></td>
+        <td>{{ room.type }}</td>
+        <td>{% if room.availability is not null %} free {% else %} booked {% endif %}</td>
+        <td>{{ room.guestName }}</td>
+        <td>{{ room.guestSurname }}</td>
+        <td>{{ room.guestTel }}</td>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}
