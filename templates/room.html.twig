@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Room {{ room.no }} - Hotel App{% endblock %}
+
+{% block body %}
+
+Room number {{ room.no }} <br>
+type {{ room.type }} <br>
+rate {{ room.rate }} currency/day <br>
+availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
+
+    {{ form_start(form) }}
+
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_help(form.name) }}
+
+        {{ form_label(form.surname) }}
+        {{ form_errors(form.surname) }}
+        {{ form_widget(form.surname) }}
+        {{ form_help(form.surname) }}
+
+        {{ form_label(form.telephone) }}
+        {{ form_errors(form.telephone) }}
+        {{ form_widget(form.telephone) }}
+        {{ form_help(form.telephone) }}
+        
+        <button type="submit">add</button>
+        
+    {{ form_end(form) }}
+
+
+
+{% endblock %}

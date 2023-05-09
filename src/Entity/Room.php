@@ -30,6 +30,9 @@ class Room
 
     #[ORM\Column(nullable: true)]
     private ?int $guestTel = null;
+
+    #[ORM\Column]
+    private ?float $rate = null;
     
     public function getId(): ?int
     {
@@ -53,6 +56,11 @@ class Room
         return $this->availability;
     }
 
+    public function getAvailability(): ?bool
+    {
+        return $this->availability;
+    }
+
     public function setAvailability(bool $availability): self
     {
         $this->availability = $availability;
@@ -67,7 +75,7 @@ class Room
 
     public function setGuestName(string $guestName): self
     {
-        $this->guestName = $guesName;
+        $this->guestName = $guestName;
 
         return $this;
     }
@@ -104,6 +112,18 @@ class Room
     public function setGuestTel(?int $guestTel): self
     {
         $this->guestTel = $guestTel;
+
+        return $this;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(float $rate): self
+    {
+        $this->rate = $rate;
 
         return $this;
     }

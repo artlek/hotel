@@ -29,15 +29,18 @@ class Checkin
     #[ORM\Column(nullable: true)]
     private ?float $cost = null;
 
-    #[ORM\Column]
-    private ?int $guestId = null;
-
-    #[ORM\Column]
-    private ?int $roomId = null;
-
     #[Assert\Type(type: Type::class)]
     #[Assert\Valid]
     protected $type;
+
+    #[ORM\Column(length: 255)]
+    private ?string $guestName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $guestSurname = null;
+
+    #[ORM\Column]
+    private ?int $guestTel = null;
 
     public function getId(): ?int
     {
@@ -104,30 +107,6 @@ class Checkin
         return $this;
     }
 
-    public function getGuestId(): ?int
-    {
-        return $this->guestId;
-    }
-
-    public function setGuestId(int $guestId): self
-    {
-        $this->guestId = $guestId;
-
-        return $this;
-    }
-
-    public function getRoomId(): ?int
-    {
-        return $this->roomId;
-    }
-
-    public function setRoomId(int $roomId): self
-    {
-        $this->roomId = $roomId;
-
-        return $this;
-    }
-
     public function getType(): ?Type
     {
         return $this->type;
@@ -136,5 +115,41 @@ class Checkin
     public function setType(?Type $type)
     {
         $this->type = $type;
+    }
+
+    public function getGuestName(): ?string
+    {
+        return $this->guestName;
+    }
+
+    public function setGuestName(string $guestName): self
+    {
+        $this->guestName = $guestName;
+
+        return $this;
+    }
+
+    public function getGuestSurname(): ?string
+    {
+        return $this->guestSurname;
+    }
+
+    public function setGuestSurname(string $guestSurname): self
+    {
+        $this->guestSurname = $guestSurname;
+
+        return $this;
+    }
+
+    public function getGuestTel(): ?int
+    {
+        return $this->guestTel;
+    }
+
+    public function setGuestTel(int $guestTel): self
+    {
+        $this->guestTel = $guestTel;
+
+        return $this;
     }
 }

@@ -8,6 +8,7 @@
     <thead>
         <th>no</th>
         <th>type</th>
+        <th>rate</th>
         <th>availability</th>
         <th>guest name</th>
         <th>guest surname</th>
@@ -15,9 +16,10 @@
     </thead>
     {% for room in rooms %}
     <tbody>
-        <td><a href="/room/{{ room.id }}">{{ room.no }}</a></td>
+        <td><a href="/room/{{ room.no }}">{{ room.no }}</a></td>
         <td>{{ room.type }}</td>
-        <td>{% if room.availability is not null %} free {% else %} booked {% endif %}</td>
+        <td>{{ room.rate }} </td>
+        <td>{% if room.availability == 1 %} booked {% else %} free {% endif %}</td>
         <td>{{ room.guestName }}</td>
         <td>{{ room.guestSurname }}</td>
         <td>{{ room.guestTel }}</td>

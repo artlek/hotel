@@ -9,6 +9,11 @@
         {% endblock %}
     </head>
     <body>
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
         {% block menu %}{% endblock %}
         {% block body %}{% endblock %}
     </body>
