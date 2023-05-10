@@ -4,11 +4,17 @@
 
 {% block body %}
 
-Room number {{ room.no }} <br>
-type {{ room.type }} <br>
-rate {{ room.rate }} currency/day <br>
-availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
+{% if room is defined %}
+    Room number {{ room.no }} <br>
+    type {{ room.type }} <br>
+    rate {{ room.rate }} currency/day <br>
+    availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
+    Guest name {{ room.guestName }} <br>
+    Guest surname {{ room.guestSurname }} <br>
+    Guest telephone {{ room.guestTel }} <br>
+{% endif %}
 
+{% if form is defined %}
     {{ form_start(form) }}
 
         {{ form_label(form.name) }}
@@ -29,7 +35,6 @@ availability {% if room.availability == 1 %} booked {% else %} free {% endif %} 
         <button type="submit">add</button>
         
     {{ form_end(form) }}
-
-
+{% endif %}
 
 {% endblock %}

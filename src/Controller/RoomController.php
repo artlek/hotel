@@ -11,7 +11,7 @@ use App\Entity\Room;
 use App\Entity\Checkin;
 use App\Entity\Guest;
 use App\Form\CheckinForm;
-use App\Service\SaveToDatabase;
+use App\Service\ProcessNewCheckin;
 
 class RoomController extends AbstractController
 {
@@ -25,46 +25,32 @@ class RoomController extends AbstractController
     }
 
     #[Route('/room/{no}', name: 'room')]
-    public function show(EntityManagerInterface $em, int $no, Request $request, SaveToDatabase $save): Response
+    public function show(EntityManagerInterface $em, int $no, Request $request, ProcessNewCheckin $newCheckin): Response
     {
         $room = $em->getRepository(Room::class)->findOneBy(['no' => $no]);
 
-        if (!$room) {
+        if(!$room) {
             $this->addFlash('success', 'Room does not exist');
             return $this->redirectToRoute('rooms');
         }
-
-        $form = $this->createForm(CheckinForm::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $checkin = new Checkin();
-            $checkin
-                ->setCheckIn(date("Y-m-d H:i:s"))
-                ->setRate($room->getRate())
-                ->setGuestName($data['name'])
-                ->setGuestSurname($data['surname'])
-                ->setGuestTel($data['telephone'])
-            ;
-
-            $room
-                ->setAvailability(TRUE)
-                ->setGuestTel($data['telephone'])
-                ->setGuestName($data['name'])
-                ->setGuestSurname($data['surname'])
-            ;
-
-            $save->save($checkin);
-            $save->save($room);
-
-            $this->addFlash('success', 'Checkin was successful');
-            return $this->redirectToRoute('rooms');
+        
+        if($room->getAvailability() == 0){
+            $form = $this->createForm(CheckinForm::class);
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()) {
+                $newCheckin->process($room, $form);
+                $this->addFlash('success', 'Checkin was successful');
+                return $this->redirectToRoute('rooms');
+            }
+            return $this->render('room.html.twig', [
+                'form' => $form,
+                'room' => $room
+            ]);
         }
-
-        return $this->render('room.html.twig', [
-            'room' => $room,
-            'form' => $form
-        ]);
+        else {
+            return $this->render('room.html.twig', [
+                'room' => $room,
+            ]);
+        }
     }
 }
