@@ -41,7 +41,7 @@ class NewCheckin extends AbstractController
         }
         else {
             $session = $this->requestStack->getSession();
-            $session->getFlashBag()->add('success', 'Guest is already checked in');
+            $session->getFlashBag()->add('positive', 'Guest is already checked in');
             return false;
         }
     }

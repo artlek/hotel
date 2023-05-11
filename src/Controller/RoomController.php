@@ -30,7 +30,7 @@ class RoomController extends AbstractController
         $room = $em->getRepository(Room::class)->findOneBy(['no' => $no]);
 
         if(!$room) {
-            $this->addFlash('success', 'Room does not exist');
+            $this->addFlash('negative', 'Room does not exist');
             return $this->redirectToRoute('rooms');
         }
         
@@ -39,7 +39,7 @@ class RoomController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
                 if($newCheckin->add($room, $form)) {
-                    $this->addFlash('success', 'Checkin was successful');
+                    $this->addFlash('positive', 'Checkin was successful');
                     return $this->redirectToRoute('rooms');
                 }
             }

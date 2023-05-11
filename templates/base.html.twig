@@ -9,11 +9,15 @@
         {% endblock %}
     </head>
     <body>
-        {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-        {% endfor %}
+            {% for message in app.flashes('positive') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('negative') %}
+                <div class="alert alert-warning">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('neutral') %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
         {% block menu %}{% endblock %}
         {% block body %}{% endblock %}
     </body>
