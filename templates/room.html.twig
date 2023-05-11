@@ -7,7 +7,7 @@
 {% if room is defined %}
     Room number {{ room.no }} <br>
     type {{ room.type }} <br>
-    rate {{ room.rate }} currency/day <br>
+    price {{ room.price }} currency/day <br>
     availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
     Guest name {{ room.guestName }} <br>
     Guest surname {{ room.guestSurname }} <br>

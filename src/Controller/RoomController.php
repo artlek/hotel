@@ -38,9 +38,10 @@ class RoomController extends AbstractController
             $form = $this->createForm(CheckinForm::class);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
-                $newCheckin->process($room, $form);
-                $this->addFlash('success', 'Checkin was successful');
-                return $this->redirectToRoute('rooms');
+                if($newCheckin->process($room, $form)) {
+                    $this->addFlash('success', 'Checkin was successful');
+                    return $this->redirectToRoute('rooms');
+                }
             }
             return $this->render('room.html.twig', [
                 'form' => $form,

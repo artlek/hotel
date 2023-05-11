@@ -32,7 +32,7 @@ class Room
     private ?int $guestTel = null;
 
     #[ORM\Column]
-    private ?float $rate = null;
+    private ?float $price = null;
     
     public function getId(): ?int
     {
@@ -116,14 +116,14 @@ class Room
         return $this;
     }
 
-    public function getRate(): ?float
+    public function getPrice(): ?float
     {
-        return $this->rate;
+        return $this->price;
     }
 
-    public function setRate(float $rate): self
+    public function setPrice(float $price): self
     {
-        $this->rate = $rate;
+        $this->price = $price;
 
         return $this;
     }
