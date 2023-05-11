@@ -42,6 +42,12 @@ class Checkin
     #[ORM\Column]
     private ?int $guestTel = null;
 
+    #[ORM\Column]
+    private ?bool $ifCheckedOut = null;
+
+    #[ORM\Column]
+    private ?int $roomNo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +155,30 @@ class Checkin
     public function setGuestTel(int $guestTel): self
     {
         $this->guestTel = $guestTel;
+
+        return $this;
+    }
+
+    public function isIfCheckedOut(): ?bool
+    {
+        return $this->ifCheckedOut;
+    }
+
+    public function setIfCheckedOut(bool $ifCheckedOut): self
+    {
+        $this->ifCheckedOut = $ifCheckedOut;
+
+        return $this;
+    }
+
+    public function getRoomNo(): ?int
+    {
+        return $this->roomNo;
+    }
+
+    public function setRoomNo(int $roomNo): self
+    {
+        $this->roomNo = $roomNo;
 
         return $this;
     }

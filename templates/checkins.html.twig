@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkin list - Hotel App{% endblock %}
+
+{% block body %}
+
+<table>
+    <thead>
+        <th></th>
+        <th>guest name</th>
+        <th>guest surname</th>
+        <th>guest telephone</th>
+        <th>checked out</th>
+        <th>room no</th>
+        <th>price</th>
+        <th>period</th>
+        <th>cost</th>
+    </thead>
+    {% set counter = 0 %}
+    {% for checkin in checkins %}
+    {% set counter = counter + 1 %}
+    <tbody>
+        <td>{{ counter }}.</td>
+        <td>{{ checkin.guestName }}</td>
+        <td>{{ checkin.guestSurName }}</td>
+        <td>{{ checkin.guestTel}} </td>
+        <td>{% if checkin.ifCheckedOut == 1 %} checked out {% endif %}</td>
+        <td>{{ checkin.roomNo }}</td>
+        <td>{{ checkin.price }}</td>
+        <td>{{ checkin.period }}</td>
+        <td>{{ checkin.cost }}</td>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}
