@@ -8,14 +8,14 @@ use App\Entity\Checkin;
 use App\Service\SaveToDatabase;
 use App\Service\IsGuestChecked;
 
-class ProcessNewCheckin extends AbstractController
+class NewCheckin extends AbstractController
 {
     public function __construct(private SaveToDatabase $save, private IsGuestChecked $guestChecked, private RequestStack $requestStack)
     {
     }
 
     // passes data from the form to checkin object and room object, saves it to database
-    public function process($room, $form)
+    public function add($room, $form)
     {
         $data = $form->getData();
         if($this->guestChecked->check($data['name'], $data['surname'], $data['telephone']))

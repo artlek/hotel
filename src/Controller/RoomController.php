@@ -11,7 +11,7 @@ use App\Entity\Room;
 use App\Entity\Checkin;
 use App\Entity\Guest;
 use App\Form\CheckinForm;
-use App\Service\ProcessNewCheckin;
+use App\Service\NewCheckin;
 
 class RoomController extends AbstractController
 {
@@ -25,7 +25,7 @@ class RoomController extends AbstractController
     }
 
     #[Route('/room/{no}', name: 'room')]
-    public function show(EntityManagerInterface $em, int $no, Request $request, ProcessNewCheckin $newCheckin): Response
+    public function show(EntityManagerInterface $em, int $no, Request $request, NewCheckin $newCheckin): Response
     {
         $room = $em->getRepository(Room::class)->findOneBy(['no' => $no]);
 
@@ -38,7 +38,7 @@ class RoomController extends AbstractController
             $form = $this->createForm(CheckinForm::class);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
-                if($newCheckin->process($room, $form)) {
+                if($newCheckin->add($room, $form)) {
                     $this->addFlash('success', 'Checkin was successful');
                     return $this->redirectToRoute('rooms');
                 }
