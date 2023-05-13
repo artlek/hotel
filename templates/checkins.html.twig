@@ -10,8 +10,10 @@
         <th>guest name</th>
         <th>guest surname</th>
         <th>guest telephone</th>
-        <th>checked out</th>
         <th>room no</th>
+        <th>checked out</th>
+        <th>checkin at</th>
+        <th>checkout at</th>
         <th>price</th>
         <th>period</th>
         <th>cost</th>
@@ -24,8 +26,10 @@
         <td>{{ checkin.guestName }}</td>
         <td>{{ checkin.guestSurName }}</td>
         <td>{{ checkin.guestTel}} </td>
-        <td>{% if checkin.ifCheckedOut == 1 %} checked out {% endif %}</td>
         <td>{{ checkin.roomNo }}</td>
+        <td>{% if checkin.ifCheckedOut == 1 %} checked out {% endif %}</td>
+        <td>{{ checkin.checkIn }}</td>
+        <td>{{ checkin.checkOut }}</td>
         <td>{{ checkin.price }}</td>
         <td>{{ checkin.period }}</td>
         <td>{{ checkin.cost }}</td>
