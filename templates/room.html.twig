@@ -37,4 +37,12 @@
     {{ form_end(form) }}
 {% endif %}
 
+{% if checkoutForm is defined %}
+    {{ form_start(checkoutForm) }}
+
+        {{ form_row(checkoutForm.checkout, { 'label': 'Check out' }) }}
+
+    {{ form_end(checkoutForm) }}
+{% endif %}
+
 {% endblock %}

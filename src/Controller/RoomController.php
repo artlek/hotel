@@ -11,7 +11,9 @@ use App\Entity\Room;
 use App\Entity\Checkin;
 use App\Entity\Guest;
 use App\Form\CheckinForm;
+use App\Form\CheckoutForm;
 use App\Service\NewCheckin;
+use App\Service\Checkout;
 
 class RoomController extends AbstractController
 {
@@ -25,7 +27,7 @@ class RoomController extends AbstractController
     }
 
     #[Route('/room/{no}', name: 'room')]
-    public function show(EntityManagerInterface $em, int $no, Request $request, NewCheckin $newCheckin): Response
+    public function show(EntityManagerInterface $em, int $no, Request $request, NewCheckin $checkin, Checkout $checkout): Response
     {
         $room = $em->getRepository(Room::class)->findOneBy(['no' => $no]);
 
@@ -35,10 +37,9 @@ class RoomController extends AbstractController
         }
         
         if($room->getAvailability() == 0){
-            $form = $this->createForm(CheckinForm::class);
-            $form->handleRequest($request);
+            $form = $this->createForm(CheckinForm::class)->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
-                if($newCheckin->add($room, $form)) {
+                if($checkin->add($room, $form)) {
                     $this->addFlash('positive', 'Checkin was successful');
                     return $this->redirectToRoute('rooms');
                 }
@@ -49,8 +50,15 @@ class RoomController extends AbstractController
             ]);
         }
         else {
+            $checkoutForm = $this->createForm(CheckoutForm::class)->handleRequest($request);
+            if ($checkoutForm->isSubmitted() && $checkoutForm->isValid()) {
+                $cost = $checkout->checkout($room);
+                $this->addFlash('positive', 'Guest has been checked out of the room. ' . $cost . ' to be paid.');
+                return $this->redirect('/room/' . $room->getNo());
+            }
             return $this->render('room.html.twig', [
                 'room' => $room,
+                'checkoutForm' => $checkoutForm
             ]);
         }
     }

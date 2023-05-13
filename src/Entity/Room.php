@@ -73,7 +73,7 @@ class Room
         return $this->guestName;
     }
 
-    public function setGuestName(string $guestName): self
+    public function setGuestName(?string $guestName): self
     {
         $this->guestName = $guestName;
 

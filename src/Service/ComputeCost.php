@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Entity\Checkin;
+
 class ComputeCost
 {
     private $period;
