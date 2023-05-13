@@ -4,16 +4,13 @@ namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Room;
+use App\Service\GuestExistChecker;
 
-class NameExist
+class NameExist extends GuestExistChecker
 {
-    public function __construct(private EntityManagerInterface $em)
-    {
-    }
-
     public function check($name) : bool
     {
-        $room = $this->em->getRepository(Room::class)->findOneBy(['guestName' => $name]);
+        $room = $this->rooms->findOneBy(['guestName' => $name]);
         if($room) {
             return true;
         }
