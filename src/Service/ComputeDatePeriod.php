@@ -7,15 +7,10 @@ class ComputeDatePeriod
     private $firstDate;
     private $secondDate;
 
-    public function compute(string $firstDate, string $secondDate) : int
+    public function compute(Checkin $checkin) : int
     {
-        $this->firstDate = date_create($firstDate);
-        $this->secondDate = date_create($secondDate);
-        if($this->firstDate AND $this->secondDate AND $this->firstDate < $this->secondDate ) {
-            return intval(date_diff($this->firstDate, $this->secondDate)->format('%a'));
-        }
-        else {
-            return 0;
-        }
+        $this->firstDate = date_create($checkin->getCheckIn());
+        $this->secondDate = date_create($checkin->getChecoOut());
+        return 1 + intval(date_diff($this->firstDate, $this->secondDate)->format('%a'));
     }
 }
