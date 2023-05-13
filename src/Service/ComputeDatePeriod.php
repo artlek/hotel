@@ -13,6 +13,11 @@ class ComputeDatePeriod
     {
         $this->firstDate = date_create($checkin->getCheckIn());
         $this->secondDate = date_create($checkin->getCheckOut());
-        return 1 + intval(date_diff($this->firstDate, $this->secondDate)->format('%a'));
+        if(intval(date_diff($this->firstDate, $this->secondDate)->format('%a') == 0)) {
+            return 1;
+        }
+        else{
+            return intval(date_diff($this->firstDate, $this->secondDate)->format('%a'));
+        }
     }
 }
