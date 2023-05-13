@@ -13,7 +13,7 @@ use App\Entity\Guest;
 use App\Form\CheckinForm;
 use App\Form\CheckoutForm;
 use App\Service\NewCheckin;
-use App\Service\Checkout;
+use App\Service\NewCheckout;
 
 class RoomController extends AbstractController
 {
@@ -27,7 +27,7 @@ class RoomController extends AbstractController
     }
 
     #[Route('/room/{no}', name: 'room')]
-    public function show(EntityManagerInterface $em, int $no, Request $request, NewCheckin $checkin, Checkout $checkout): Response
+    public function show(EntityManagerInterface $em, int $no, Request $request, NewCheckin $checkin, NewCheckout $checkout): Response
     {
         $room = $em->getRepository(Room::class)->findOneBy(['no' => $no]);
 
