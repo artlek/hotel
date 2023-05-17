@@ -1,0 +1,12 @@
+body {
+    background-color: #e9e9e9;
+}
+.blue-bar {
+    background-color: #1348b9;
+}
+a.main-menu {
+    color: #ffffff;
+}
+a.main-menu:hover {
+    color: #8ba6ff;
+}
