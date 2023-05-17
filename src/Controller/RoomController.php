@@ -37,7 +37,7 @@ class RoomController extends AbstractController
         }
         
         if($room->getAvailability() == 0){
-            $form = $this->createForm(CheckinForm::class)->handleRequest($request);
+            $form = $this->createForm(CheckinForm::class, $room)->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
                 if($checkin->add($room, $form)) {
                     $this->addFlash('positive', 'Checkin was successful');

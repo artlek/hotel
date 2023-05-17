@@ -20,7 +20,7 @@ class Guest
     private ?string $surname = null;
 
     #[ORM\Column]
-    private ?int $tel = null;
+    private ?string $tel = null;
 
     public function getId(): ?int
     {
@@ -51,12 +51,12 @@ class Guest
         return $this;
     }
 
-    public function getTel(): ?int
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setTel(int $tel): self
+    public function setTel(string $tel): self
     {
         $this->tel = $tel;
 

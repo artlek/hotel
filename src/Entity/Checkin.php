@@ -40,7 +40,7 @@ class Checkin
     private ?string $guestSurname = null;
 
     #[ORM\Column]
-    private ?int $guestTel = null;
+    private ?string $guestTel = null;
 
     #[ORM\Column]
     private ?bool $ifCheckedOut = null;
@@ -147,12 +147,12 @@ class Checkin
         return $this;
     }
 
-    public function getGuestTel(): ?int
+    public function getGuestTel(): ?string
     {
         return $this->guestTel;
     }
 
-    public function setGuestTel(int $guestTel): self
+    public function setGuestTel(string $guestTel): self
     {
         $this->guestTel = $guestTel;
 

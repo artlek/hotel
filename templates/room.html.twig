@@ -7,7 +7,7 @@
 {% if room is defined %}
     Room number {{ room.no }} <br>
     type {{ room.type }} <br>
-    price {{ room.price }} currency/day <br>
+    price {{ room.price }} <br>
     availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
     Guest name {{ room.guestName }} <br>
     Guest surname {{ room.guestSurname }} <br>
@@ -17,22 +17,22 @@
 {% if form is defined %}
     {{ form_start(form) }}
 
-        {{ form_label(form.name) }}
-        {{ form_errors(form.name) }}
-        {{ form_widget(form.name) }}
-        {{ form_help(form.name) }}
+        {{ form_label(form.guestName) }}
+        {{ form_errors(form.guestName) }}
+        {{ form_widget(form.guestName) }}
+        {{ form_help(form.guestName) }}
 
-        {{ form_label(form.surname) }}
-        {{ form_errors(form.surname) }}
-        {{ form_widget(form.surname) }}
-        {{ form_help(form.surname) }}
+        {{ form_label(form.guestSurname) }}
+        {{ form_errors(form.guestSurname) }}
+        {{ form_widget(form.guestSurname) }}
+        {{ form_help(form.guestSurname) }}
 
-        {{ form_label(form.telephone) }}
-        {{ form_errors(form.telephone) }}
-        {{ form_widget(form.telephone) }}
-        {{ form_help(form.telephone) }}
+        {{ form_label(form.guestTel) }}
+        {{ form_errors(form.guestTel) }}
+        {{ form_widget(form.guestTel) }}
+        {{ form_help(form.guestTel) }}
         
-        <button type="submit">add</button>
+        <button type="submit">check in</button>
         
     {{ form_end(form) }}
 {% endif %}

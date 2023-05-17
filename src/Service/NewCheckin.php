@@ -18,23 +18,23 @@ class NewCheckin extends AbstractController
     public function add($room, $form)
     {
         $data = $form->getData();
-        if($this->guestChecked->check($data['name'], $data['surname'], $data['telephone']))
+        if($this->guestChecked->check($data->getGuestName(), $data->getGuestSurname(), $data->getGuestTel()))
         {
             $checkin = new Checkin();
             $checkin
                 ->setCheckIn(date("Y-m-d H:i:s"))
                 ->setPrice($room->getPrice())
-                ->setGuestName($data['name'])
-                ->setGuestSurname($data['surname'])
-                ->setGuestTel($data['telephone'])
+                ->setGuestName($data->getGuestName())
+                ->setGuestSurname($data->getGuestSurname())
+                ->setGuestTel($data->getGuestTel())
                 ->setRoomNo($room->getNo())
                 ->setIfCheckedOut(false)
             ;
             $room
                 ->setAvailability(TRUE)
-                ->setGuestTel($data['telephone'])
-                ->setGuestName($data['name'])
-                ->setGuestSurname($data['surname'])
+                ->setGuestTel($data->getGuestTel())
+                ->setGuestName($data->getGuestName())
+                ->setGuestSurname($data->getGuestSurname())
             ;
             
             $this->save->save($checkin);

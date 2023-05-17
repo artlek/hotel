@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RoomRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
@@ -29,7 +30,7 @@ class Room
     private ?string $guestSurname = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $guestTel = null;
+    private ?string $guestTel = null;
 
     #[ORM\Column]
     private ?float $price = null;
@@ -104,12 +105,12 @@ class Room
         return $this;
     }
 
-    public function getGuestTel(): ?int
+    public function getGuestTel(): ?string
     {
         return $this->guestTel;
     }
 
-    public function setGuestTel(?int $guestTel): self
+    public function setGuestTel(?string $guestTel): self
     {
         $this->guestTel = $guestTel;
 
