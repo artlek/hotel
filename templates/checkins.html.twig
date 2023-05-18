@@ -4,35 +4,41 @@
 
 {% block body %}
 
-<table>
+<h1>checkin list</h1>
+<h2>list of all hotel checkins</h2>
+<table class="table align-middle my-4">
     <thead>
-        <th></th>
-        <th>guest name</th>
-        <th>guest surname</th>
-        <th>guest telephone</th>
-        <th>room no</th>
-        <th>checked out</th>
-        <th>checkin at</th>
-        <th>checkout at</th>
-        <th>price</th>
-        <th>period</th>
-        <th>cost</th>
+        <tr>
+            <th></th>
+            <th>guest name</th>
+            <th>guest surname</th>
+            <th>guest telephone</th>
+            <th>room no</th>
+            <th>checked out</th>
+            <th>checkin at</th>
+            <th>checkout at</th>
+            <th>price</th>
+            <th>period [days]</th>
+            <th>cost</th>
+        </tr>
     </thead>
     {% set counter = 0 %}
     {% for checkin in checkins %}
     {% set counter = counter + 1 %}
     <tbody>
-        <td>{{ counter }}.</td>
-        <td>{{ checkin.guestName }}</td>
-        <td>{{ checkin.guestSurName }}</td>
-        <td>{{ checkin.guestTel}} </td>
-        <td>{{ checkin.roomNo }}</td>
-        <td>{% if checkin.ifCheckedOut == 1 %} checked out {% endif %}</td>
-        <td>{{ checkin.checkIn }}</td>
-        <td>{{ checkin.checkOut }}</td>
-        <td>{{ checkin.price }}</td>
-        <td>{{ checkin.period }}</td>
-        <td>{{ checkin.cost }}</td>
+        <tr class="body-row">
+            <td>{{ counter }}.</td>
+            <td>{{ checkin.guestName }}</td>
+            <td>{{ checkin.guestSurName }}</td>
+            <td>{{ checkin.guestTel}} </td>
+            <td>{{ checkin.roomNo }}</td>
+            <td>{% if checkin.ifCheckedOut == 1 %} checked out {% endif %}</td>
+            <td>{{ checkin.checkIn }}</td>
+            <td>{{ checkin.checkOut }}</td>
+            <td>{{ checkin.price }}</td>
+            <td>{{ checkin.period }}</td>
+            <td>{{ checkin.cost }}</td>
+        </tr>
     </tbody>
     {% endfor %}
 </table>

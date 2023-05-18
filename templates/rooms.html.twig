@@ -4,25 +4,33 @@
 
 {% block body %}
 
-<table>
+<h1>room list</h1>
+<h2>list of all rooms in the hotel</h2>
+<table class="table align-middle my-4">
     <thead>
-        <th>no</th>
-        <th>type</th>
-        <th>price</th>
-        <th>availability</th>
-        <th>guest name</th>
-        <th>guest surname</th>
-        <th>guest telephone</th>
+        <tr>
+            <th>no</th>
+            <th>type</th>
+            <th>price</th>
+            <th>availability</th>
+            <th>guest name</th>
+            <th>guest surname</th>
+            <th>guest telephone</th>
+            <th></th>
+        </tr>
     </thead>
     {% for room in rooms %}
     <tbody>
-        <td><a href="/room/{{ room.no }}">{{ room.no }}</a></td>
-        <td>{{ room.type }}</td>
-        <td>{{ room.price }} </td>
-        <td>{% if room.availability == 1 %} booked {% else %} free {% endif %}</td>
-        <td>{{ room.guestName }}</td>
-        <td>{{ room.guestSurname }}</td>
-        <td>{{ room.guestTel }}</td>
+        <tr class="body-row">
+            <td>{{ room.no }}</td>
+            <td>{{ room.type }}</td>
+            <td>{{ room.price }}</td>
+            {% if room.availability == 1 %}<td class="text-danger">booked</td>{% else %}<td class="text-success">free{% endif %}</td>
+            <td>{{ room.guestName }}</td>
+            <td>{{ room.guestSurname }}</td>
+            <td>{{ room.guestTel }}</td>
+            <td><a href="/room/{{ room.no }}"><button type="button" class="btn btn-sm btn-success">edit</button></a></td>
+        </tr>
     </tbody>
     {% endfor %}
 </table>

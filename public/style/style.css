@@ -1,12 +1,40 @@
 body {
-    background-color: #e9e9e9;
+    background-color: #ffffff;
 }
 .blue-bar {
-    background-color: #1348b9;
+    background-color: #113177;
 }
 a.main-menu {
     color: #ffffff;
 }
 a.main-menu:hover {
     color: #8ba6ff;
+}
+h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 2px 0px;
+    color: #113177;
+}
+h2 {
+    font-size: 13px;
+    color: #6b6b6b;
+    font-weight: 300;
+}
+table {
+    font-size: 14px;
+}
+th {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+thead {
+    background-color: #383838;
+    color: #ffffff;
+}
+tbody {
+    color: #6b6b6b;
+}
+tr.body-row:hover {
+    background-color: #f5f5f5;
 }
