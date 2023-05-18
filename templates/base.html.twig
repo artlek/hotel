@@ -16,7 +16,7 @@
                     <nav class="navbar navbar-expand-lg blue-bar">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="">
-                                <img src="{{ asset('/uploads/') }}logo.jpg" alt="Hotel App" width="42" height="42">
+                                <img src="{{ asset('/uploads/') }}logo.png" alt="Hotel App" width="42" height="42">
                             </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="container-xl my-4">
-            {% for message in app.flashes('positive') %}<div class="alert alert-success">{{ message }}</div>{% endfor %}
-            {% for message in app.flashes('negative') %}<div class="alert alert-warning">{{ message }}</div>{% endfor %}
-            {% for message in app.flashes('neutral') %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
+            {% for message in app.flashes('positive') %}<div class="alert alert-success rounded-0">{{ message }}</div>{% endfor %}
+            {% for message in app.flashes('negative') %}<div class="alert alert-warning rounded-0">{{ message }}</div>{% endfor %}
+            {% for message in app.flashes('neutral') %}<div class="alert alert-danger rounded-0">{{ message }}</div>{% endfor %}
             {% block body %}{% endblock %}
         </div>
     </body>
