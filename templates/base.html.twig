@@ -36,8 +36,8 @@
         </div>
         <div class="container-xl my-4">
             {% for message in app.flashes('positive') %}<div class="alert alert-success rounded-0">{{ message }}</div>{% endfor %}
-            {% for message in app.flashes('negative') %}<div class="alert alert-warning rounded-0">{{ message }}</div>{% endfor %}
-            {% for message in app.flashes('neutral') %}<div class="alert alert-danger rounded-0">{{ message }}</div>{% endfor %}
+            {% for message in app.flashes('negative') %}<div class="alert alert-danger rounded-0">{{ message }}</div>{% endfor %}
+            {% for message in app.flashes('neutral') %}<div class="alert alert-secondary rounded-0">{{ message }}</div>{% endfor %}
             {% block body %}{% endblock %}
         </div>
     </body>

@@ -4,45 +4,68 @@
 
 {% block body %}
 
-{% if room is defined %}
-    Room number {{ room.no }} <br>
-    type {{ room.type }} <br>
-    price {{ room.price }} <br>
-    availability {% if room.availability == 1 %} booked {% else %} free {% endif %} <br>
-    Guest name {{ room.guestName }} <br>
-    Guest surname {{ room.guestSurname }} <br>
-    Guest telephone {{ room.guestTel }} <br>
-{% endif %}
+    <h1>room no {{ room.no }}</h1>
+    <h2>Details of the room</h2>
 
-{% if form is defined %}
-    {{ form_start(form) }}
+    {% if room is defined %}
+        <div class="card my-4 w-50 rounded-0">
+            <div class="card-header bg-dark text-light rounded-0">Room number {{ room.no }}</div>
+            <div class="card-body">
+                {% if form is defined %}
+                    {{ form_start(form) }}
 
-        {{ form_label(form.guestName) }}
-        {{ form_errors(form.guestName) }}
-        {{ form_widget(form.guestName) }}
-        {{ form_help(form.guestName) }}
+                        {{ form_label(form.guestName, 'Guest name', {'label_attr': {'class': 'form-label m-0'}}) }}
+                        {{ form_errors(form.guestName) }}
+                        {{ form_widget(form.guestName, {'attr': {'class': 'form-control mb-2'}}) }}
+                        {{ form_help(form.guestName) }}
 
-        {{ form_label(form.guestSurname) }}
-        {{ form_errors(form.guestSurname) }}
-        {{ form_widget(form.guestSurname) }}
-        {{ form_help(form.guestSurname) }}
+                        {{ form_label(form.guestSurname, 'Guest surname', {'label_attr': {'class': 'form-label m-0'}}) }}
+                        {{ form_errors(form.guestSurname) }}
+                        {{ form_widget(form.guestSurname, {'attr': {'class': 'form-control mb-2'}}) }}
+                        {{ form_help(form.guestSurname) }}
 
-        {{ form_label(form.guestTel) }}
-        {{ form_errors(form.guestTel) }}
-        {{ form_widget(form.guestTel) }}
-        {{ form_help(form.guestTel) }}
-        
-        <button type="submit">check in</button>
-        
-    {{ form_end(form) }}
-{% endif %}
-
-{% if checkoutForm is defined %}
-    {{ form_start(checkoutForm) }}
-
-        {{ form_row(checkoutForm.checkout, { 'label': 'Check out' }) }}
-
-    {{ form_end(checkoutForm) }}
-{% endif %}
-
+                        {{ form_label(form.guestTel, 'Guest telephone', {'label_attr': {'class': 'form-label m-0'}}) }}
+                        {{ form_errors(form.guestTel) }}
+                        {{ form_widget(form.guestTel, {'attr': {'class': 'form-control mb-2'}}) }}
+                        {{ form_help(form.guestTel) }}
+                        
+                        <button type="submit" class="btn btn-sm btn-success my-2 px-4">check in</button>
+            
+                    {{ form_end(form) }}
+                {% endif %}
+                {% if checkoutForm is defined %}
+                    <div class="card-content">
+                        <div class="card-first-line">Name</div>
+                        <div class="card-second-line m-0">{{ room.guestName }}</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-first-line">Surname</div>
+                        <div class="card-second-line m-0">{{ room.guestSurname }}</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-first-line">Telephone</div>
+                        <div class="card-second-line m-0">{{ room.guestTel }}</div>
+                    </div>
+                    {{ form_start(checkoutForm) }}
+                    {{ form_row(checkoutForm.checkout, { 'label': 'Check out' }) }}
+                    {{ form_end(checkoutForm) }}
+                {% endif %}
+            </div>
+            <div class="card-footer text-body-secondary py-2">
+                <span class="me-3">
+                    <span class="card-second-line">availability</span>
+                    {% if room.availability == 1 %}<span class="card-first-line text-danger">booked{% else %}<span class="card-first-line text-success">free{% endif %}</span>
+                </span>
+                <span class="me-3">
+                    <span class="card-second-line">room type</span>
+                    <span class="card-first-line">{{ room.type }}</span>
+                </span>
+                <span class="me-3">
+                    <span class="card-second-line">price</span>
+                    <span class="card-first-line">{{ room.price }}</span>
+                </span>
+            </div>
+        </div>
+    {% endif %}
+    
 {% endblock %}

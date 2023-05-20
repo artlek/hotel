@@ -12,7 +12,7 @@ class CheckoutForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('checkout', SubmitType::class)
+            ->add('checkout', SubmitType::class, ['attr' => ['class' => 'btn btn-sm btn-danger my-2 px-4']])
         ;
     }
 
