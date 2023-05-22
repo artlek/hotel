@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\RoomRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity(fields: ['no'], message: 'There is already room with this number')]
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
 {
@@ -15,6 +17,7 @@ class Room
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Type('string')]
     private ?string $type = null;
 
     #[ORM\Column]
@@ -23,7 +26,8 @@ class Room
     #[ORM\Column(nullable: true)]
     private ?string $guestName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(unique: true)]
+    #[Assert\GreaterThan(0)]
     private ?int $no = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -33,6 +37,11 @@ class Room
     private ?string $guestTel = null;
 
     #[ORM\Column]
+    #[Assert\Type(
+        type: 'float',
+        message: 'Invalid value',
+    )]
+    #[Assert\GreaterThan(0)]
     private ?float $price = null;
     
     public function getId(): ?int

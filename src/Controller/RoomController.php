@@ -12,8 +12,10 @@ use App\Entity\Checkin;
 use App\Entity\Guest;
 use App\Form\CheckinForm;
 use App\Form\CheckoutForm;
+use App\Form\AddRoomForm;
 use App\Service\NewCheckin;
 use App\Service\NewCheckout;
+use App\Service\SaveToDatabase;
 
 class RoomController extends AbstractController
 {
@@ -61,5 +63,21 @@ class RoomController extends AbstractController
                 'checkoutForm' => $checkoutForm
             ]);
         }
+    }
+
+    #[Route('/rooms/add', name: 'add-room')]
+    public function addRoom(Request $request, SaveToDatabase $save): Response
+    {
+        $room = new Room();
+        $form = $this->createForm(AddRoomForm::class, $room)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $room->setAvailability(0);
+            $save->save($room);
+            $this->addFlash('positive', 'Room no ' . $room->getNo() . ' was added');
+            return $this->redirectToRoute('rooms');
+        }
+        return $this->render('add-room.html.twig', [
+            'form' => $form
+        ]);
     }
 }
