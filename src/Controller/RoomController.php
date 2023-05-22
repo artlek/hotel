@@ -22,7 +22,7 @@ class RoomController extends AbstractController
     #[Route('/rooms', name: 'rooms')]
     public function getRoomList(EntityManagerInterface $em): Response
     {
-        $rooms = $em->getRepository(Room::class)->findAll();
+        $rooms = $em->getRepository(Room::class)->findBy(array(), array('no' => 'ASC'));
         return $this->render('rooms.html.twig', [
             'rooms' => $rooms
         ]);
