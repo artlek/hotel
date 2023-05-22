@@ -14,7 +14,7 @@ h1 {
     font-size: 22px;
     text-transform: uppercase;
     margin: 2px 0px;
-    color: #113177;
+    color: #294d9b;
 }
 h2 {
     font-size: 13px;
@@ -52,6 +52,9 @@ div.card-second-line {
     color: #525252;
     display: inline-block;
 }
+button.btn {
+    border-radius: 0px;
+}
 span.card-first-line{
     margin: 0px;
     font-size: 15px;
@@ -62,4 +65,57 @@ span.card-second-line {
     margin: 0px;
     font-size: 13px;
     color: #666666;
+}
+div.index-container {
+    display: flex;
+    flex-direction: row;
+}
+div.left-container {
+    width: 304px;
+    min-height: 350px;
+    max-height: 520px;
+    background-image: url("/../uploads/hotelapp.jpg");
+    background-size: cover;
+}
+div.right-container {
+    max-height: 520px;
+    width: 500px;
+    min-height: 350px;
+    background-color: #f8f8f8;
+    border: 1px solid #d1d1d1;
+    border-left: 0px;
+}
+p.index-text {
+    color: #6b6b6b;
+    margin: 30px 0px;
+}
+button.btn-one {
+    background-color: #002077;
+    color: #ffffff;
+    border: 0px;
+    padding: 5px 25px;
+    margin-right: 10px;
+}
+button.btn-one:hover {
+    background-color: #1b2bb9;
+}
+button.btn-two {
+    background-color: #00109b;
+    color: #ffffff;
+    border: 0px;
+    padding: 5px 25px;
+    margin-right: 10px;
+}
+button.btn-two:hover {
+    background-color: #1a38e0;
+}
+button.btn-three {
+    background-color: #2c56ca;
+    color: #ffffff;
+    border: 0px;
+    padding: 5px 25px;
+    margin-right: 10px;
+}
+button.btn-three:hover {
+    background-color: #4464f7;
 }
