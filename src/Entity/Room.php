@@ -17,23 +17,28 @@ class Room
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Assert\Type('string')]
+    #[Assert\Regex('/^[a-zA-Z0-9)(,\s-]{3,20}$/', 
+        message: 'Invalid data. Only digits, letters and bracket, comma and dash mark. Min. 3 and max. 20 characters.')]
     private ?string $type = null;
 
     #[ORM\Column]
     private ?bool $availability = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Regex('/^[a-zA-Z0-9\.,\s-]{3,50}$/', message: 'Invalid data. Only digits, letters and dot, comma and dash mark. Min. 3 and max. 50 characters.')]
     private ?string $guestName = null;
 
     #[ORM\Column(unique: true)]
     #[Assert\GreaterThan(0)]
+    #[Assert\LessThan(1000)]
     private ?int $no = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex('/^[a-zA-Z0-9\.,\s-]{3,50}$/', message: 'Invalid data. Only digits, letters and dot, comma and dash mark allowed. Min. 3 and max. 50 characters.')]
     private ?string $guestSurname = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Regex('/^[0-9-]{9,15}$/', message: 'Invalid data. Only digits and dash mark allowed. Min. 9 and max. 15 characters.')]
     private ?string $guestTel = null;
 
     #[ORM\Column]
@@ -42,6 +47,7 @@ class Room
         message: 'Invalid value',
     )]
     #[Assert\GreaterThan(0)]
+    #[Assert\LessThan(1000000)]
     private ?float $price = null;
     
     public function getId(): ?int

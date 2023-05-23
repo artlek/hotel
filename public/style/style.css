@@ -119,3 +119,6 @@ button.btn-three {
 button.btn-three:hover {
     background-color: #4464f7;
 }
+input::placeholder {
+    font-size: 12px;
+}

@@ -16,7 +16,7 @@ class AddRoomForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('type', TextType::class)
+            ->add('type', TextType::class, ['attr' => ['placeholder' => 'Min. 3 and max. 20 characters']])
             ->add('no', IntegerType::class)
             ->add('price', NumberType::class)
         ;

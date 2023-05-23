@@ -15,18 +15,18 @@
                     {{ form_start(form) }}
 
                         {{ form_label(form.guestName, 'Guest name', {'label_attr': {'class': 'form-label m-0'}}) }}
-                        {{ form_errors(form.guestName) }}
                         {{ form_widget(form.guestName, {'attr': {'class': 'form-control mb-2'}}) }}
+                        <small class="text-danger m-0">{{ form_errors(form.guestName) }}</small>
                         {{ form_help(form.guestName) }}
 
                         {{ form_label(form.guestSurname, 'Guest surname', {'label_attr': {'class': 'form-label m-0'}}) }}
-                        {{ form_errors(form.guestSurname) }}
                         {{ form_widget(form.guestSurname, {'attr': {'class': 'form-control mb-2'}}) }}
+                        <small class="text-danger m-0">{{ form_errors(form.guestSurname) }}</small>
                         {{ form_help(form.guestSurname) }}
 
                         {{ form_label(form.guestTel, 'Guest telephone', {'label_attr': {'class': 'form-label m-0'}}) }}
-                        {{ form_errors(form.guestTel) }}
                         {{ form_widget(form.guestTel, {'attr': {'class': 'form-control mb-2'}}) }}
+                        <small class="text-danger m-0">{{ form_errors(form.guestTel) }}</small>
                         {{ form_help(form.guestTel) }}
                         
                         <button type="submit" class="btn btn-sm btn-success my-2 px-5">check in</button>
