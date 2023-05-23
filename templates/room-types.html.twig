@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Room type list - Hotel App{% endblock %}
+
+{% block body %}
+
+    <h1>add new room type</h1>
+    <div class="col-md-4">
+        {{ form_start(form)}}
+            <div class="form-label mt-3 mb-0"> {{ form_label(form.type, 'Type') }} </div>
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            <small class="text-danger m-0"> {{ form_errors(form.type) }}</small>
+            <div class="form-label mt-3 mb-0"> {{ form_label(form.price, 'Price') }} </div>
+            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+            <small class="text-danger m-0"> {{ form_errors(form.price) }}</small>
+            <div>
+                <button type="submit" class="btn btn-sm btn-success px-5 my-3">add</button>
+                <a href="{{ path('rooms') }}"><button type="button" class="btn btn-sm btn-secondary px-5 my-3">back</button></a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+    <h1>room type list</h1>
+    <h2>list of all room types</h2>
+    <div class="col-md-4">
+        {% if types is empty %}
+        <div class="alert alert-secondary my-4">No data</div>
+        {% else %}
+            <table class="table align-middle my-4">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>type</th>
+                        <th>price</th>
+                    </tr>
+                </thead>
+                {% set counter = 1 %}
+                {% for type in types %}
+                <tbody>
+                    <tr class="body-row">
+                        <td>{{ counter }}.</td>
+                        <td>{{ type.type }}</td>
+                        <td>{{ type.price }}</td>
+                    </tr>
+                </tbody>
+                {% set counter = counter + 1 %}
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+{% endblock %}

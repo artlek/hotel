@@ -10,9 +10,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Room;
 use App\Entity\Checkin;
 use App\Entity\Guest;
+use App\Entity\Type;
 use App\Form\CheckinForm;
 use App\Form\CheckoutForm;
 use App\Form\AddRoomForm;
+use App\Form\AddRoomTypeForm;
 use App\Service\NewCheckin;
 use App\Service\NewCheckout;
 use App\Service\SaveToDatabase;
@@ -20,7 +22,7 @@ use App\Service\SaveToDatabase;
 class RoomController extends AbstractController
 {
     #[Route('/rooms', name: 'rooms')]
-    public function getRoomList(EntityManagerInterface $em): Response
+    public function showRoomList(EntityManagerInterface $em): Response
     {
         $rooms = $em->getRepository(Room::class)->findBy(array(), array('no' => 'ASC'));
         return $this->render('rooms.html.twig', [
@@ -77,6 +79,21 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('rooms');
         }
         return $this->render('add-room.html.twig', [
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/rooms/add-room-type', name: 'add-room-type')]
+    public function addRoomType(Request $request, SaveToDatabase $save): Response
+    {
+        $type = new Type();
+        $form = $this->createForm(AddRoomTypeForm::class, $type)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $save->save($type);
+            $this->addFlash('positive', 'Room type ' . $type->getType() . ' was added');
+            return $this->redirectToRoute('add-room-type');
+        }
+        return $this->render('add-room-type.html.twig', [
             'form' => $form
         ]);
     }
