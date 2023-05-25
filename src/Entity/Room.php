@@ -17,8 +17,6 @@ class Room
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Assert\Regex('/^[a-zA-Z0-9)(,\s-]{3,20}$/', 
-        message: 'Invalid data. Only digits, letters and bracket, comma and dash mark. Min. 3 and max. 20 characters.')]
     private ?string $type = null;
 
     #[ORM\Column]

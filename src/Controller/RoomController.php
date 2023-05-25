@@ -73,7 +73,10 @@ class RoomController extends AbstractController
         $room = new Room();
         $form = $this->createForm(AddRoomForm::class, $room)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            $explodedType = explode('-separator-', $form->getData()->getType());
             $room->setAvailability(0);
+            $room->setType($explodedType['0']);
+            $room->setPrice($explodedType['1']);
             $save->save($room);
             $this->addFlash('positive', 'Room no ' . $room->getNo() . ' was added');
             return $this->redirectToRoute('rooms');
