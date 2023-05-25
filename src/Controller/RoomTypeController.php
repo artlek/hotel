@@ -30,4 +30,18 @@ class RoomTypeController extends AbstractController
             'form' => $form
         ]);
     }
+
+    #[Route('/rooms/delete-room-type', name: 'delete-room-type')]
+    public function deleteRoomType(EntityManagerInterface $em, Request $request, SaveToDatabase $save): Response
+    {
+        if(isset($_POST['room-type-id'])) {
+            $type = $em->getRepository(Type::class)->find($_POST['room-type-id']);
+            if($type) {
+                $typeName = $type->getType();
+                $save->delete($type);
+                $this->addFlash('positive', 'Room type "' . $typeName . '" was deleted');
+            }
+        }
+        return $this->redirectToRoute('room-types');
+    }
 }

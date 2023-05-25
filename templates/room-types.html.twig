@@ -31,6 +31,7 @@
                         <th></th>
                         <th>type</th>
                         <th>price</th>
+                        <th></th>
                     </tr>
                 </thead>
                 {% set counter = 1 %}
@@ -40,6 +41,12 @@
                         <td>{{ counter }}.</td>
                         <td>{{ type.type }}</td>
                         <td>{{ type.price }}</td>
+                        <td>
+                            <form action="{{ path('delete-room-type') }}" method="post">
+                                <input type="hidden" name="room-type-id" value="{{ type.id }}">
+                                <button type="submit">delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
                 {% set counter = counter + 1 %}
