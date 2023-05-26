@@ -20,6 +20,8 @@
                 </div>
             {{ form_end(form) }}
         </div>
+    {% else %}
+        <a href="{{ path('room-types') }}"><button type="button" class="btn btn-sm btn-secondary px-5 my-3">add room type</button></a>
     {% endif %}
 
 {% endblock %}
