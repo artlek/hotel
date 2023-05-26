@@ -88,7 +88,7 @@ class RoomController extends AbstractController
             ]);
         }
         else {
-            $this->addFlash('negative', 'Add a room type in room types tab before you add a room');
+            $this->addFlash('negative', 'Add a room type before you add a room');
             return $this->render('add-room.html.twig');
         }
     }
