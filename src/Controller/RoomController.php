@@ -18,6 +18,7 @@ use App\Form\AddRoomTypeForm;
 use App\Service\NewCheckin;
 use App\Service\NewCheckout;
 use App\Service\SaveToDatabase;
+use App\Service\AnyRoomTypeExist;
 
 class RoomController extends AbstractController
 {
@@ -68,22 +69,28 @@ class RoomController extends AbstractController
     }
 
     #[Route('/rooms/add', name: 'add-room')]
-    public function addRoom(Request $request, SaveToDatabase $save): Response
+    public function addRoom(Request $request, SaveToDatabase $save, AnyRoomTypeExist $roomTypeExist): Response
     {
-        $room = new Room();
-        $form = $this->createForm(AddRoomForm::class, $room)->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $explodedType = explode('-separator-', $form->getData()->getType());
-            $room->setAvailability(0);
-            $room->setType($explodedType['0']);
-            $room->setPrice($explodedType['1']);
-            $save->save($room);
-            $this->addFlash('positive', 'Room no ' . $room->getNo() . ' was added');
-            return $this->redirectToRoute('rooms');
+        if($roomTypeExist->check()){
+            $room = new Room();
+            $form = $this->createForm(AddRoomForm::class, $room)->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()) {
+                $explodedType = explode('-separator-', $form->getData()->getType());
+                $room->setAvailability(0);
+                $room->setType($explodedType['0']);
+                $room->setPrice($explodedType['1']);
+                $save->save($room);
+                $this->addFlash('positive', 'Room no ' . $room->getNo() . ' was added');
+                return $this->redirectToRoute('rooms');
+            }
+            return $this->render('add-room.html.twig', [
+                'form' => $form
+            ]);
         }
-        return $this->render('add-room.html.twig', [
-            'form' => $form
-        ]);
+        else {
+            $this->addFlash('negative', 'Add a room type in room types tab before you add a room');
+            return $this->render('add-room.html.twig');
+        }
     }
 
     #[Route('/rooms/add-room-type', name: 'add-room-type')]

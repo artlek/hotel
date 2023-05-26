@@ -4,7 +4,8 @@
 
 {% block body %}
 
-    <h1>Add room</h1>
+    {% if form is defined %}
+        <h1>Add room</h1>
         <div class="col-md-4">
             {{ form_start(form)}}
                 <div class="form-label mt-3 mb-0"> {{ form_label(form.type, 'Type') }} </div>
@@ -19,5 +20,6 @@
                 </div>
             {{ form_end(form) }}
         </div>
+    {% endif %}
 
 {% endblock %}
