@@ -28,6 +28,7 @@ class NewCheckin extends AbstractController
                 ->setGuestSurname($data->getGuestSurname())
                 ->setGuestTel($data->getGuestTel())
                 ->setRoomNo($room->getNo())
+                ->setRoomType($room->getType())
                 ->setIfCheckedOut(false)
             ;
             $room

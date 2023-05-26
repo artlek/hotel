@@ -48,6 +48,9 @@ class Checkin
     #[ORM\Column]
     private ?int $roomNo = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $roomType = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -179,6 +182,18 @@ class Checkin
     public function setRoomNo(int $roomNo): self
     {
         $this->roomNo = $roomNo;
+
+        return $this;
+    }
+
+    public function getRoomType(): ?string
+    {
+        return $this->roomType;
+    }
+
+    public function setRoomType(string $roomType): self
+    {
+        $this->roomType = $roomType;
 
         return $this;
     }
