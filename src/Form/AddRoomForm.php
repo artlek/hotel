@@ -11,11 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\Service\GetRoomTypes;
+use App\Service\RoomType;
 
 class AddRoomForm extends AbstractType
 {
-    public function __construct(private GetRoomTypes $types)
+    public function __construct(private RoomType $types)
     {
 
     }

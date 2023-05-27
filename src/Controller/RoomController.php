@@ -19,6 +19,7 @@ use App\Service\NewCheckin;
 use App\Service\NewCheckout;
 use App\Service\SaveToDatabase;
 use App\Service\AnyRoomTypeExist;
+use App\Service\RoomType;
 
 class RoomController extends AbstractController
 {
@@ -69,16 +70,15 @@ class RoomController extends AbstractController
     }
 
     #[Route('/rooms/add', name: 'add-room')]
-    public function addRoom(Request $request, SaveToDatabase $save, AnyRoomTypeExist $roomTypeExist): Response
+    public function addRoom(Request $request, SaveToDatabase $save, AnyRoomTypeExist $roomTypeExist, RoomType $roomType): Response
     {
         if($roomTypeExist->check()){
             $room = new Room();
             $form = $this->createForm(AddRoomForm::class, $room)->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
-                $explodedType = explode('-separator-', $form->getData()->getType());
                 $room->setAvailability(0);
-                $room->setType($explodedType['0']);
-                $room->setPrice($explodedType['1']);
+                $room->setType($form->getData()->getType());
+                $room->setPrice($roomType->getPrice($form->getData()->getType()));
                 $save->save($room);
                 $this->addFlash('positive', 'Room no ' . $room->getNo() . ' was added');
                 return $this->redirectToRoute('rooms');

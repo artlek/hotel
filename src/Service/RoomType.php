@@ -5,7 +5,7 @@ namespace App\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Type;
 
-class GetRoomTypes
+class RoomType
 {
     public function __construct(private EntityManagerInterface $em)
     {
@@ -19,8 +19,14 @@ class GetRoomTypes
         $typeArray = [];
         for ($i = 0; $i < count($types); $i++)
         {
-            $typeArray += [$types[$i]->getType() => ($types[$i]->getType() . '-separator-' . $types[$i]->getPrice())];
+            $typeArray += [$types[$i]->getType() => ($types[$i]->getType())];
         }
         return $typeArray;
+    }
+
+    // Gets room price
+    public function getPrice($type) : float
+    {
+        return $this->em->getRepository(Type::class)->findOneBy(['type' => $type])->getPrice();
     }
 }
