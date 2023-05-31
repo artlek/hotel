@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel App - about{% endblock %}
+
+{% block body %}
+
+<h1>About</h1>
+<p class="text mt-4">
+    <span class="fw-bold">author: </span>Artur Lekston artur.lekston@gmail.com<br>
+    <span class="fw-bold">version: </span>1.0.0
+</p>
+<p class="text mt-4">
+    Hotel App is a very simple web application to manage room checkins in a hotel. It is created only for education purposes. 
+    Technologies that have been used are Symfony 5, Bootstrap 5.3, MariaDB 10, HTML 5 and CSS. 
+    For this time Hotel App has basic features, but it is going to be developed in the near future.
+</p>
+
+<h1>Quick start</h1>
+<p class="text mt-4">
+    Using the application is very simple. You just need to:
+</p>
+    <ol>
+        <li>Add new room type
+            <p>
+                Add new room type in <a href="{{ path('room-types') }}" class="link"> room types tab</a> if no type has been added yet.
+                Price field is the cost for one day of stay.
+                It is necessary to add new room.
+            </p>
+        </li>
+        <li>Add new room
+            <p>
+                Add new room in <a href="{{ path('add-room') }}" class="link"> this tab</a> (if no room has been added yet).
+            </p>
+        </li>
+        <li>Checkin a guest
+            <p>
+                Go to <a href="{{ path('rooms') }}" class="link"> room list</a>, choose details button and checnin a guest.
+                Fill correctly all form fields and click check in button.
+            </p>
+        </li>
+        <li>Checkout a guest
+            <p>
+                When a guest is checked you can check him out. 
+                In <a href="{{ path('rooms') }}" class="link"> room list</a> find the guest, choose details button and then check out.
+                You will see total value the guest must to pay.
+            </p>
+        </li>
+        <li>See checkins list
+            <p>
+                In <a href="{{ path('checkins') }}" class="link"> checkin list</a> you can find all checkins in the hotel with values to pay.
+            </p>
+        </li>
+    </ol>
+
+{% endblock %}

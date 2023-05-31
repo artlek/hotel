@@ -44,4 +44,19 @@ class RoomTypeController extends AbstractController
         }
         return $this->redirectToRoute('room-types');
     }
+
+    #[Route('/rooms/add-room-type', name: 'add-room-type')]
+    public function addRoomType(Request $request, SaveToDatabase $save): Response
+    {
+        $type = new Type();
+        $form = $this->createForm(AddRoomTypeForm::class, $type)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $save->save($type);
+            $this->addFlash('positive', 'Room type ' . $type->getType() . ' was added');
+            return $this->redirectToRoute('add-room-type');
+        }
+        return $this->render('add-room-type.html.twig', [
+            'form' => $form
+        ]);
+    }
 }

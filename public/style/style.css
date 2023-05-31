@@ -94,6 +94,9 @@ p.index-text {
     color: #6b6b6b;
     margin: 30px 0px;
 }
+p.text, li {
+    color: #6b6b6b;
+}
 button.btn-one {
     background-color: #002077;
     color: #ffffff;
@@ -126,4 +129,12 @@ button.btn-three:hover {
 }
 input::placeholder {
     font-size: 12px;
+}
+a.link {
+    text-decoration: none;
+    color: #3261e2;
+}
+a.link:hover {
+    text-decoration: underline;
+    color: #092164;
 }
