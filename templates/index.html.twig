@@ -2,26 +2,19 @@
 
 {% block title %}Hotel App{% endblock %}
 
-{% block menu %}{% endblock %}
-
 {% block body %}
 
-    <div class="index-container position-absolute top-50 start-50 translate-middle">
+    <div class="index-container">
         <div class="left-container"></div>
         <div class="right-container p-4">
             <h1>Welcome in Hotel App!</h1>
             <p class="index-text"> 
-                Hotel App is a very simple web application to manage hotel room checkins.
-                To start just click room list button, choose concrete room and checkin someone.
+                Hotel App is a very simple web application to manage room checkins in a hotel.
+                To start just click room button on top menu, choose concrete room and checkin someone.
                 For more information choose about page.
             <p class="index-text">
                 Note that the app is created only for education purposes.
             </p>
-            <div class="index-button text-center">
-                <a href="{{ path('rooms') }}"><button class="btn-one px-4 me-2">room list</button></a>
-                <a href="{{ path('checkins') }}"><button class="btn-two px-4 me-2">checkin list</button></a>
-                <a href="#"><button class="btn-three px-4 me-2">about</button></a>
-            </div>
         </div>
     </div>
 

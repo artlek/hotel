@@ -69,6 +69,11 @@ span.card-second-line {
 div.index-container {
     display: flex;
     flex-direction: row;
+    max-height: 520px;
+    width: 804px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 10px;
 }
 div.left-container {
     width: 304px;

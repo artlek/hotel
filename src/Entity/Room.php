@@ -36,7 +36,7 @@ class Room
     private ?string $guestSurname = null;
 
     #[ORM\Column(nullable: true)]
-    #[Assert\Regex('/^[0-9-]{9,15}$/', message: 'Invalid data. Only digits and dash mark allowed. Min. 9 and max. 15 characters.')]
+    #[Assert\Regex('/^[0-9-+]{9,15}$/', message: 'Invalid data. Only digits and dash mark allowed. Min. 9 and max. 15 characters.')]
     private ?string $guestTel = null;
 
     #[ORM\Column]
