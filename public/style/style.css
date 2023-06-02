@@ -94,7 +94,7 @@ p.index-text {
     color: #6b6b6b;
     margin: 30px 0px;
 }
-p.text, li {
+p.text, li.text {
     color: #6b6b6b;
 }
 button.btn-one {
